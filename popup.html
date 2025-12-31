@@ -7,6 +7,16 @@
                 font-family: -apple-system, sans-serif;
                 padding: 15px;
             }
+            h2 {
+                font-size: 16px;
+                margin: 0 0 5px 0;
+                color: #F41C5E;
+            }
+            p {
+                font-size: 12px;
+                margin: 0 0 15px 0;
+                color: #666;
+            }
             h3 {
                 font-size: 14px;
                 margin: 0 0 10px 0;
@@ -23,20 +33,37 @@
                 width: 100%;
                 padding: 12px;
                 cursor: pointer;
-                background-color: #008160;
+                background-color: #F41C5E;
                 color: white;
                 border: none;
                 border-radius: 4px;
                 font-weight: bold;
             }
             button:active {
-                background-color: #006b50;
+                background-color: #d91850;
+            }
+            button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+            #toggleBtn {
+                background-color: #666;
+                margin-bottom: 8px;
+                padding: 8px;
+                font-size: 12px;
+            }
+            #toggleBtn:active {
+                background-color: #555;
             }
         </style>
     </head>
     <body>
+        <h2>Parkrun Roster Printer Pro</h2>
+        <p>Clean, printable parkrun rosters.</p>
         <h3>Dates to Include:</h3>
         <div id="columnList">Searching for table...</div>
+        <button id="toggleBtn">Select All</button>
         <button id="printBtn">Print Roster</button>
         <script src="popup.js"></script>
     </body>

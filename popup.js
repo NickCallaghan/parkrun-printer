@@ -49,7 +49,15 @@ function executePrintThenReload(indicesToHide, totalSelected) {
     window.print();
 }
 
-// 3. Popup UI Initialization
+// 3. Helper function to update print button state
+function updatePrintButtonState() {
+    const checkboxes = document.querySelectorAll(".date-check");
+    const printBtn = document.getElementById("printBtn");
+    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+    printBtn.disabled = !anyChecked;
+}
+
+// 4. Popup UI Initialization
 window.addEventListener("DOMContentLoaded", async () => {
     const [tab] = await chrome.tabs.query({
         active: true,
@@ -70,16 +78,41 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
 
     container.innerHTML = "";
-    dates.forEach((item) => {
+    dates.forEach((item, idx) => {
         const div = document.createElement("div");
         div.style.cssText =
             "display: flex; align-items: center; margin-bottom: 5px; font-size: 13px;";
-        div.innerHTML = `<input type="checkbox" checked class="date-check" data-index="${item.index}" style="margin-right: 8px;"> ${item.date}`;
+        const isChecked = idx === 0 ? "checked" : "";
+        div.innerHTML = `<input type="checkbox" ${isChecked} class="date-check" data-index="${item.index}" style="margin-right: 8px;"> ${item.date}`;
         container.appendChild(div);
     });
+    
+    // Add change listeners to all checkboxes
+    document.querySelectorAll(".date-check").forEach(cb => {
+        cb.addEventListener("change", updatePrintButtonState);
+    });
+    
+    // Set initial button state
+    updatePrintButtonState();
 });
 
-// 4. Print Button Listener
+// 5. Toggle All/None Button Listener
+document.getElementById("toggleBtn").addEventListener("click", () => {
+    const checkboxes = document.querySelectorAll(".date-check");
+    const toggleBtn = document.getElementById("toggleBtn");
+    
+    if (toggleBtn.textContent === "Select All") {
+        checkboxes.forEach(cb => cb.checked = true);
+        toggleBtn.textContent = "Select None";
+    } else {
+        checkboxes.forEach(cb => cb.checked = false);
+        toggleBtn.textContent = "Select All";
+    }
+    
+    updatePrintButtonState();
+});
+
+// 6. Print Button Listener
 document.getElementById("printBtn").addEventListener("click", async () => {
     const [tab] = await chrome.tabs.query({
         active: true,
