@@ -1,4 +1,4 @@
-# parkrun Roster Printer Pro
+# Parkrun Roster Printer Pro
 
 A Chrome extension that makes printing parkrun volunteer rosters clean, easy, and customizable.
 
