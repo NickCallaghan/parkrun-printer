@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "parkrun Roster Printer Pro",
+    "version": "2.0",
+    "permissions": ["scripting", "activeTab", "storage"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "host_permissions": [
+        "https://*.parkrun.org.uk/*",
+        "https://*.parkrun.com/*"
+    ]
+}

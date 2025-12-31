@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                width: 220px;
+                font-family: -apple-system, sans-serif;
+                padding: 15px;
+            }
+            h3 {
+                font-size: 14px;
+                margin: 0 0 10px 0;
+                color: #333;
+            }
+            #columnList {
+                margin-bottom: 15px;
+                max-height: 250px;
+                overflow-y: auto;
+                border-top: 1px solid #eee;
+                padding-top: 10px;
+            }
+            button {
+                width: 100%;
+                padding: 12px;
+                cursor: pointer;
+                background-color: #008160;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            button:active {
+                background-color: #006b50;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Dates to Include:</h3>
+        <div id="columnList">Searching for table...</div>
+        <button id="printBtn">Print Roster</button>
+        <script src="popup.js"></script>
+    </body>
+</html>
